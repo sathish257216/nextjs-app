@@ -1,8 +1,16 @@
 import { FOOD_DUMMY_IMAGE_URL, MENU_IMAGE_URL } from "../../utils/constant";
 //import { addItem, removeItem } from "../../store/reducers/cartSlice";
 
-const ItemList = ({restaurantMenu, isCartPage = false}) => {
+interface IProps {
+  restaurantMenu: IRestaurantMenu;
+  isCartPage: boolean
+} 
+interface IRestaurantMenu {
+  card: any | null;
+}
 
+const ItemList = (props: any) => {
+  const {restaurantMenu, isCartPage = false} = props.resProps;
     return (
       <div className="food-card flex justify-between items-center px-10 py-5 m-4">
         <div className="food-details">

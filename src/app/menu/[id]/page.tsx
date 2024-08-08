@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { MENU_API_URL } from "../../utils/constant";
 import ItemList from "./ItemList";
 
-export default function Page({ params }) {
+export default function Page(props:any) {
     //const menu = useRef(null); 
     const [isLoading, setIsLoading] = useState(true);
     const [restaurantMenu, setRestaurantMenu] = useState<any | null>(null);
@@ -14,7 +14,7 @@ export default function Page({ params }) {
     useEffect(() => {
         const fetchMenuData = async () => {
             setIsLoading(true);
-            fetch(MENU_API_URL.replace('{id}', params.id))
+            fetch(MENU_API_URL.replace('{id}', props.params.id))
               .then((response) => response.json())
               .then((data) => {
                 //menu.current = data.data.cards;
@@ -41,7 +41,7 @@ export default function Page({ params }) {
           <div className="menu-details">
             {
               restaurantMenu?.itemCards?.map((item: any) => (
-                <ItemList key={item?.card?.info?.id} restaurantMenu={item} />
+                <ItemList key={item?.card?.info?.id} resProps={{restaurantMenu:item, isCartPage: false}} />
               ))
             }
           </div>
