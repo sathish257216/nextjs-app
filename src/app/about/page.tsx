@@ -1,11 +1,15 @@
 import getUsers from "@/lib/getUsers";
 import User from "./User";
 import { Suspense } from "react";
-import ShimmerComponent from "../components/Shimmer";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Users',
+}
 
 export default async function Page() {
 
-  const userData: Promise<any> = getUsers();
+  const userData: Promise<IUserData> = getUsers();
 
   return (
     <div className="about-container p-4">

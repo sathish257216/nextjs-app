@@ -1,17 +1,17 @@
 import Link from "next/link";
 
 type IPromise = {
-    promise: Promise<any>;
+    promise: Promise<IUserData>;
 }
 
 export default async function User({promise}: IPromise) {
     
-  const users = await promise;
+  const users: IUserData = await promise;
 
     return (
         <>
             {
-                users?.data?.map((user: any) => (
+                users?.data?.map((user: IUser) => (
                     <div key={user.id} className="user-card flex justify-start bg-[#a69cc2] m-5 p-4 w-1/4">
                         <div className="flex flex-col">
                             <h3>Name: {user.name}</h3>
