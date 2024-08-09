@@ -4,7 +4,13 @@ import { useEffect, useState } from "react";
 import { MENU_API_URL } from "../../utils/constant";
 import ItemList from "./ItemList";
 
-export default function Page(props:any) {
+type Params = {
+  params: {
+    id: string
+  }
+}
+
+export default function Page({ params: { id } }:Params) {
     //const menu = useRef(null); 
     const [isLoading, setIsLoading] = useState(true);
     const [restaurantMenu, setRestaurantMenu] = useState<any | null>(null);
@@ -14,7 +20,7 @@ export default function Page(props:any) {
     useEffect(() => {
         const fetchMenuData = async () => {
             setIsLoading(true);
-            fetch(MENU_API_URL.replace('{id}', props.params.id))
+            fetch(MENU_API_URL.replace('{id}', id))
               .then((response) => response.json())
               .then((data) => {
                 //menu.current = data.data.cards;

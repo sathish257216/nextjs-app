@@ -13,7 +13,7 @@ export default async function Page() {
       <h4>People work here</h4>
       {
         users?.data?.map((user: any) => (
-          <User key={user.id} name={user.name} email={user.email} />
+          <User key={user.id} id={user.id} name={user.name} email={user.email} />
         ))
 
       }
