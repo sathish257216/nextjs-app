@@ -1,6 +1,7 @@
 import getUser from "@/lib/getUser"
 import getUsers from "@/lib/getUsers";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 type Params = {
     params: {
@@ -12,7 +13,7 @@ export async function generateMetadata({ params: { userId } }: Params): Promise<
     const userData: Promise<IUser> = getUser(userId)
     const user: IUser = await userData
 
-    if (!user.name) {
+    if (!user) {
         return {
             title: "User Not Found"
         }
@@ -30,13 +31,15 @@ export default async function User({params: { userId}}:Params) {
 
     const user: IUser = await userData;
 
+    if (!user) return notFound();
+
     return (
         <>
             <div className="flex flex-col">
                 <h3>Name: {user.name}</h3>
                 <h3>Email: {user.email}</h3>
                 <div>address: 
-                    <span>{user.address.street}, {user.address.city}, {user.address.zipcode}</span>
+                    <span>{user?.address?.street}, {user?.address?.city}, {user?.address?.zipcode}</span>
                 </div>
             </div>
         </>

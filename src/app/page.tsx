@@ -59,12 +59,12 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p1-5">
+    <main className="min-h-screen flex flex-col px-5">
       <div className="res-container p1-5 pr-5">
         <div className="error-message">
             <p>{error}</p>
         </div>
-        <div className="top-bar flex justify-between">
+        <div className="top-bar flex justify-between ">
             <div className="filter-bar">
               <button className="filter-btn px-4 py-2 mr-5 bg-sky-500/100 rounded-xl" onClick={filterResturant}>
                   Top Rated
@@ -76,12 +76,12 @@ export default function Home() {
             <div className="serach-bar">
               <input
                   type="text"
-                  className="search-input mr-5 border-black rounded-sm h-8 px-2"
+                  className="search-input mr-5 bg-[#f0f0f0] rounded-sm h-8 px-2"
                   placeholder="Search..."
                   value= {searchText}
                   onChange={(e) => {setSearchText(e.target.value)}}
               ></input>
-              <button className="px-4 py-2 mr-5 bg-sky-500/100 rounded-xl" onClick={searchResturant}>
+              <button className="px-4 py-2 bg-sky-500/100 rounded-xl" onClick={searchResturant}>
                   Search
               </button>
             </div>
