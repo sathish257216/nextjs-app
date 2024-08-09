@@ -1,22 +1,18 @@
 import getUsers from "@/lib/getUsers";
 import User from "./User";
+import { Suspense } from "react";
+import ShimmerComponent from "../components/Shimmer";
 
 export default async function Page() {
 
   const userData: Promise<any> = getUsers();
-  const users = await userData;
 
-  console.info("users", users)
-  console.log('users ',users)
   return (
     <div className="about-container p-4">
       <h4>People work here</h4>
-      {
-        users?.data?.map((user: any) => (
-          <User key={user.id} id={user.id} name={user.name} email={user.email} />
-        ))
-
-      }
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <User promise= {userData} />
+      </Suspense>
     </div>
   );
 }

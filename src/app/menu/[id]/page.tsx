@@ -1,8 +1,9 @@
 'use client'
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { MENU_API_URL } from "../../utils/constant";
 import ItemList from "./ItemList";
+import ShimmerComponent from "@/app/components/Shimmer";
 
 type Params = {
   params: {
@@ -23,8 +24,6 @@ export default function Page({ params: { id } }:Params) {
             fetch(MENU_API_URL.replace('{id}', id))
               .then((response) => response.json())
               .then((data) => {
-                //menu.current = data.data.cards;
-                //console.log('Menu --- ', data);
                 setRestaurantDetails(data?.data?.cards[2]?.card?.card?.info);
                 setRestaurantMenu(data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card);
                 setIsLoading(false);
@@ -44,13 +43,15 @@ export default function Page({ params: { id } }:Params) {
               <h3>{restaurantDetails?.name}</h3>
               <h3>{restaurantDetails?.cuisines}</h3>
           </div>
-          <div className="menu-details">
-            {
-              restaurantMenu?.itemCards?.map((item: any) => (
-                <ItemList key={item?.card?.info?.id} resProps={{restaurantMenu:item, isCartPage: false}} />
-              ))
-            }
-          </div>
+          <Suspense fallback={<ShimmerComponent />}>
+            <div className="menu-details">
+              {
+                restaurantMenu?.itemCards?.map((item: any) => (
+                  <ItemList key={item?.card?.info?.id} resProps={{restaurantMenu:item, isCartPage: false}} />
+                ))
+              }
+            </div>
+          </Suspense>
         </div>
     )
 }
