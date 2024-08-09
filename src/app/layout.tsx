@@ -21,9 +21,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <section>
           <Header />
-          <main>
-            {children}
-          </main>
+            <main>
+              {children}
+            </main>
         </section>
       </body>
 

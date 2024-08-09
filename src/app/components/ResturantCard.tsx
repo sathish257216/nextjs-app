@@ -1,3 +1,5 @@
+'use client'
+
 import { CDN_URL } from "@/app/utils/constant";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -35,17 +37,5 @@ const ResturantCardComponent = (props: any) => {
   );
 };
 
-export const withHighlyRatedResturantCardComponent = (ResturantCardComponent : any) => {
-  const HighlyRatedResturantCardComponent = (props: any) => {
-    return (
-      <div className="higher-card">
-        <ResturantCardComponent {...props} />
-        <div className="highly-rated">Highly Rated</div>
-      </div>
-    )
-  }
-  HighlyRatedResturantCardComponent.displayName = `withHighlyRatedResturantCardComponent(${ResturantCardComponent})`;
-  return HighlyRatedResturantCardComponent;
-}
 
 export default ResturantCardComponent;

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from "react";
-import ResturantCardComponent, { withHighlyRatedResturantCardComponent } from "./components/ResturantCard";
+import ResturantCardComponent from "./components/ResturantCard";
 import { RESTURANT_API_URL } from "./utils/constant";
 import ShimmerComponent from "./components/Shimmer";
 
@@ -13,8 +13,6 @@ export default function Home() {
   const [error, setError] = useState(null);
   const [searchText, setSearchText] = useState("");
   
-  const HighlyRatedResturant = withHighlyRatedResturantCardComponent(ResturantCardComponent); 
-
   useEffect(() => {
     const fetchResturantData = async () => {
       setIsLoading(true);
@@ -94,7 +92,6 @@ export default function Home() {
             <div className="card-container flex flex-wrap justify-around">
             {
               listOfResturants?.map((hotel: any) => (
-                  hotel.info.avgRating > 4 ? <HighlyRatedResturant key={hotel.info.id} resData={hotel} /> :
                   <ResturantCardComponent key={hotel.info.id} resData={hotel} />
               ))
             }
