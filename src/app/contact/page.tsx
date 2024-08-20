@@ -1,7 +1,13 @@
-export default async function Page() {
+export default function Page() {
 
-  const res = await fetch('http://localhost:3000/api/contact', { method: 'GET' });
-  const data = await res.json();
+  const data = {
+    address: {
+      street: "Kulas Light",
+      suite: "Apt. 556",
+      city: "Gwenborough",
+      zipcode: "92998-3874"
+    }
+  };
 
   return (
     <div className="flex flex-col p-5">
