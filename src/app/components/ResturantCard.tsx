@@ -25,7 +25,7 @@ const ResturantCardComponent = (props: any) => {
       <div className="hotel-details">
         <div className="hotel-name">
           <h4 className="font-semibold">{name}</h4>
-          <span className="cuisine-name text-ellipsis overflow-hidden">{cuisines.join(", ")}</span>
+          <span className="cuisine-name">{cuisines.join(", ")}</span>
         </div>
         <div className="hotel-rating flex">
           <h5>{avgRating} Star</h5>
