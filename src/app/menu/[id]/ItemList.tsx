@@ -12,7 +12,7 @@ interface IRestaurantMenu {
 const ItemList = (props: any) => {
   const {restaurantMenu, isCartPage = false} = props.resProps;
     return (
-      <div className="food-card flex justify-between items-center px-10 py-5 m-4">
+      <div className="food-card flex justify-between items-center bg-indigo-100 rounded-lg px-10 py-5 m-4">
         <div className="food-details">
           <h4>{restaurantMenu?.card?.info?.name}</h4>
           <span>Price - {restaurantMenu?.card?.info?.price/100}</span>
